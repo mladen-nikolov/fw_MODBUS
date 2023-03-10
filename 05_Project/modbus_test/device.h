@@ -26,23 +26,11 @@
 #define SECTION_RAM_FUNC    "ramfuncs"
 
 
-#define USE_LEDS                    0
+#define USE_LEDS                        0
 
-////CS1291
-////#define DEVICE_GPIO_PIN_LED1        17U   // SPI_SOMI
-////#define DEVICE_GPIO_PIN_LED2        16U   // SPI-SIMO
-//#define DEVICE_GPIO_PIN_LED1        23U   // EQEP1I
-//#define DEVICE_GPIO_PIN_LED2        22U   // EQEP1S
+#define USE_TXEN                        1
 
-//LaunchXL
-//#define DEVICE_GPIO_PIN_LED1        39U   // GPIO number for LD1 (D10 LaunchXL)
-//#define DEVICE_GPIO_PIN_LED2        34U   // GPIO number for LD2 (D9  LaunchXL)
-//#define DEVICE_GPIO_PIN_LED3        145U  // GPIO number for LD7 (EtherCAT Error LED)
-//#define DEVICE_GPIO_PIN_LED4        146U  // GPIO number for LD8 (EtherCAT Run LED)
-
-#define USE_TXEN                    1
-
-#define DEVICE_GPIO_PIN_SCITXEN        15U
+#define DEVICE_GPIO_PIN_SCITXEN         15U
 
 //*****************************************************************************
 //

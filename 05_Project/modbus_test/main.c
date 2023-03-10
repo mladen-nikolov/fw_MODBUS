@@ -95,10 +95,10 @@
 #include "string.h"
 #include <stdint.h>
 //#include "array.h"
-#include "led.h"
 #include "timer.h"
 #include "scia.h"
 #include "device.h"
+#include "gpio.h"
 ////
 //// Defines that configure which ePWM timer interrupts are enabled at the
 //// PIE level: 1 = enabled,  0 = disabled
@@ -1205,28 +1205,8 @@ void main(void)
     //
     InitPieVectTable();
 
-    //
-    // Interrupts that are used in this example are re-mapped to
-    // ISR functions found within this file.
-    //
-    EALLOW;  // This is needed to write to EALLOW protected registers
-    //PieVectTable.EPWM1_INT = &epwm1_timer_isr;
-    //PieVectTable.EPWM2_INT = &epwm2_timer_isr;
-    //PieVectTable.EPWM3_INT = &epwm3_timer_isr;
-    EDIS;    // This is needed to disable write to EALLOW protected registers
-
     Device_initGPIO();
 
-    //
-    // Step 4. Initialize all the Device Peripherals:
-    // This function is found in F2806x_InitPeripherals.c
-    //
-    // InitPeripherals();  // Not required for this example
-    //InitEPwmTimer();    // For this example, only initialize the ePWM Timers
-
-    //
-    // Step 5. User specific code, enable interrupts
-    //
 
     //
     // Copy time critical code and Flash setup code to RAM
@@ -1243,44 +1223,10 @@ void main(void)
     //
     InitFlash();
 
-//    //
-//    // Initalize counters
-//    //
-//    //EPwm1TimerIntCount = 0;
-//    //EPwm2TimerIntCount = 0;
-//    //EPwm3TimerIntCount = 0;
-//    LoopCount = 0;
-//
-//
-//
 
-
-    //
-    // Enable CPU INT3 which is connected to EPWM1-3 INT
-    //
-    //IER |= M_INT3;
-
-    //
-    // Enable EPWM INTn in the PIE: Group 3 interrupt 1-3
-    //
-    //PieCtrlRegs.PIEIER3.bit.INTx1 = PWM1_INT_ENABLE;
-    //PieCtrlRegs.PIEIER3.bit.INTx2 = PWM2_INT_ENABLE;
-    //PieCtrlRegs.PIEIER3.bit.INTx3 = PWM3_INT_ENABLE;
-
-
-//    #if USE_LEDS
-//    // Enable a GPIO output on DEVICE_GPIO_PIN_LED1, set it high
-//    led_pin_write(DEVICE_GPIO_PIN_LED1, 1);
-//    led_setup(DEVICE_GPIO_PIN_LED1);
-//
-//    // Enable a GPIO output on DEVICE_GPIO_PIN_LED2, set it high
-//    led_pin_write(DEVICE_GPIO_PIN_LED2, 1);
-//    led_setup(DEVICE_GPIO_PIN_LED2);
-//    #endif
-//
     #if USE_TXEN
-    led_pin_write(DEVICE_GPIO_PIN_SCITXEN, 0);
-    led_setup(DEVICE_GPIO_PIN_SCITXEN);
+    gpio_pin_write(DEVICE_GPIO_PIN_SCITXEN, 0);
+    gpio_setup(DEVICE_GPIO_PIN_SCITXEN);
     #endif
 
     /* Initialize modbus interface */
@@ -1324,26 +1270,26 @@ void main(void)
 //        LoopCount++;
 //        //GpioDataRegs.GPBTOGGLE.bit.GPIO34 = 1;
 //        #if USE_LEDS
-//        led_pin_write (DEVICE_GPIO_PIN_LED1,0);
+//        gpio_pin_write (DEVICE_GPIO_PIN_LED1,0);
 //        #endif
 //        DELAY_US(DELAY);
 //        #if USE_LEDS
-//        led_pin_write (DEVICE_GPIO_PIN_LED2,0);
+//        gpio_pin_write (DEVICE_GPIO_PIN_LED2,0);
 //        #endif
 //        DELAY_US(DELAY);
 //        #if USE_LEDS
-//        led_pin_write (DEVICE_GPIO_PIN_LED1,1);
+//        gpio_pin_write (DEVICE_GPIO_PIN_LED1,1);
 //        #endif
 //        DELAY_US(DELAY);
 //        #if USE_LEDS
-//        led_pin_write (DEVICE_GPIO_PIN_LED2,1);
+//        gpio_pin_write (DEVICE_GPIO_PIN_LED2,1);
 //        #endif
 
         #if USE_SENDSTRING
         DELAY_US(DELAY);
         u16WaitSeconds++;
         #if USE_LEDS
-        //led_pin_toggle(DEVICE_GPIO_PIN_LED2);
+        //gpio_pin_toggle(DEVICE_GPIO_PIN_LED2);
         #endif
         pSeconds[1] = ((u16WaitSeconds / 10) > 0) ? (u16WaitSeconds / 10) + 0x30 : ' ';
         pSeconds[2] = (u16WaitSeconds % 10) + 0x30;

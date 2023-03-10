@@ -17,7 +17,7 @@
 #include "config.h"
 #include "device.h"
 #if USE_TXEN
-#include "led.h"
+#include "gpio.h"
 #endif
 
 //
@@ -62,7 +62,7 @@ void scia_CheckRTSDisable(void)
 {
     if(scia_is_tx_complete())
     {
-        led_pin_write(DEVICE_GPIO_PIN_SCITXEN, 0);
+        gpio_pin_write(DEVICE_GPIO_PIN_SCITXEN, 0);
     }
 }
 #endif
@@ -71,7 +71,7 @@ static inline
 void scia_tx_data(char data)
 {
     #if USE_TXEN
-    led_pin_write(DEVICE_GPIO_PIN_SCITXEN, 1);
+    gpio_pin_write(DEVICE_GPIO_PIN_SCITXEN, 1);
     #endif
     SciaRegs.SCITXBUF = (data & 0xFF);
 }
@@ -85,7 +85,7 @@ void scia_SendChar(char *pData)
 
     }
     #if USE_TXEN
-    led_pin_write(DEVICE_GPIO_PIN_SCITXEN, 1);
+    gpio_pin_write(DEVICE_GPIO_PIN_SCITXEN, 1);
     #endif
     SciaRegs.SCITXBUF=(*pu16Data & 0xFF);
 }

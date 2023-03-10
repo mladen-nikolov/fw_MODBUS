@@ -1,5 +1,5 @@
 /*
- * led.c
+ * gpio.c
  *
  *  Created on: Jul 11, 2022
  *      Author: Dimitar Lilov
@@ -7,12 +7,12 @@
 
 
 #include "device.h"
-#include "led.h"
+#include "gpio.h"
 
 
 
 
-void led_pin_toggle(uint32_t pin)
+void gpio_pin_toggle(uint32_t pin)
 {
     if (pin < 32)
     {
@@ -25,7 +25,7 @@ void led_pin_toggle(uint32_t pin)
 }
 
 
-void led_pin_write(uint32_t pin, uint32_t level)
+void gpio_pin_write(uint32_t pin, uint32_t level)
 {
     if (level == 1)
     {
@@ -54,14 +54,14 @@ void led_pin_write(uint32_t pin, uint32_t level)
 
 
 
-void led_setup(uint32_t PinNumber)
+void gpio_setup(uint32_t PinNumber)
 {
     Uint32 mask;
 
     // Before calling the Toggle Test, we must setup
     // the MUX and DIR registers.
 
-    //led_pin_write(PinNumber, 1);
+    //gpio_pin_write(PinNumber, 1);
 
     if(PinNumber > (Uint16)47)
     {
