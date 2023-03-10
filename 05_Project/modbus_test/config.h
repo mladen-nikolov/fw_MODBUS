@@ -11,9 +11,12 @@
 
 
 
-#define CFG_BAUD                        460800
+#define CONFIG_USE_TXEN                 1
+#define CONFIG_SCITXEN_PIN              15
 
-#define USE_SENDSTRING                  0
+#define CONFIG_BAUD                     460800
+
+#define CONFIG_USE_DEBUG_SEND           0           /* send via scia with debug purpose */
 
 
 

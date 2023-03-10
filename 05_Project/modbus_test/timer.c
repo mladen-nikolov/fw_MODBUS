@@ -1,31 +1,52 @@
-/*
- * timer.c
+/* *****************************************************************************
+ * File:   timer.c
+ * Author: XX
  *
- *  Created on: Jun 27, 2022
- *      Author: Dimitar Lilov
- */
+ * Created on 2023 03 10
+ *
+ * Description: ...
+ *
+ **************************************************************************** */
 
-//
-// Included Files
-//
+/* *****************************************************************************
+ * Header Includes
+ **************************************************************************** */
 #include "device.h"
 
-//
-// Globals
-//
+/* *****************************************************************************
+ * Configuration Definitions
+ **************************************************************************** */
 
+/* *****************************************************************************
+ * Constants and Macros Definitions
+ **************************************************************************** */
+
+/* *****************************************************************************
+ * Enumeration Definitions
+ **************************************************************************** */
+
+/* *****************************************************************************
+ * Type Definitions
+ **************************************************************************** */
+
+/* *****************************************************************************
+ * Function-Like Macros
+ **************************************************************************** */
+
+/* *****************************************************************************
+ * Variables Definitions
+ **************************************************************************** */
+
+/* *****************************************************************************
+ * Prototype of functions definitions
+ **************************************************************************** */
+
+/* *****************************************************************************
+ * Functions
+ **************************************************************************** */
 
 void timer0_init(void)
 {
-    //
-    // CPU Timer 0
-    //
-
-    //
-    // Initialize address pointers to respective timer registers
-    //
-    //CpuTimer0.RegsAddr = &CpuTimer0Regs;
-
     //
     // Initialize timer period to maximum
     //
@@ -56,15 +77,6 @@ void timer0_init(void)
 void timer1_init(void)
 {
     //
-    // CPU Timer 0
-    //
-
-    //
-    // Initialize address pointers to respective timer registers
-    //
-    //CpuTimer1.RegsAddr = &CpuTimer1Regs;
-
-    //
     // Initialize timer period to maximum
     //
     CpuTimer1Regs.PRD.all  = 0xFFFFFFFF;
@@ -94,15 +106,6 @@ void timer1_init(void)
 void timer2_init(void)
 {
     //
-    // CPU Timer 0
-    //
-
-    //
-    // Initialize address pointers to respective timer registers
-    //
-    //CpuTimer2.RegsAddr = &CpuTimer2Regs;
-
-    //
     // Initialize timer period to maximum
     //
     CpuTimer2Regs.PRD.all  = 0xFFFFFFFF;
@@ -128,12 +131,6 @@ void timer2_init(void)
     //
     CpuTimer2Regs.TCR.all = 0x4000;
 }
-
-
-
-//
-// End of File
-//
 
 
 

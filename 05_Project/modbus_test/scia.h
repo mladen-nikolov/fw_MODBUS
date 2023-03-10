@@ -1,48 +1,51 @@
-/*
- * scia.h
+/* *****************************************************************************
+ * File:   scia.h
+ * Author: XX
  *
- *  Created on: Jun 27, 2022
- *      Author: Dimitar Lilov
- */
+ * Created on 2023 03 10
+ *
+ * Description: ...
+ *
+ **************************************************************************** */
+#pragma once
 
-#ifndef SCIA_H_
-#define SCIA_H_
+#ifdef __cplusplus
+extern "C"
+{
+#endif /* __cplusplus */
 
-//
-// Includes
-//
+
+/* *****************************************************************************
+ * Header Includes
+ **************************************************************************** */
 #include <stdint.h>
 #include <stdbool.h>
 
 #include "config.h"
 #include "device.h"
-#if USE_TXEN
+#if CONFIG_USE_TXEN
 #include "gpio.h"
 #endif
 
-//
-// Configuration Defines
-//
+/* *****************************************************************************
+ * Configuration Definitions
+ **************************************************************************** */
 
-//
-// Defines
-//
-#define ACK                             0x2D
-#define NAK                             0xA5
-#define STX                             0x02
-#define ETX                             0x03
-#define CR                              0x0D
-#define LF                              0x0A
+/* *****************************************************************************
+ * Constants and Macros Definitions
+ **************************************************************************** */
 
-extern uint32_t scia_fail_ovf;
+/* *****************************************************************************
+ * Enumeration Definitions
+ **************************************************************************** */
 
-//
-// Function Prototypes
-//
-void scia_init(void);
-void scia_flush(void);
-void scia_ovf_check(void);
+/* *****************************************************************************
+ * Type Definitions
+ **************************************************************************** */
 
+/* *****************************************************************************
+ * Function-Like Macro
+ **************************************************************************** */
 #define scia_is_rx_available()  (SciaRegs.SCIFFRX.bit.RXFFST > 0)
 #define scia_rx_data()          (SciaRegs.SCIRXBUF.all)
 #define scia_is_tx_possible()   (SciaRegs.SCIFFTX.bit.TXFFST < 4)
@@ -50,48 +53,57 @@ void scia_ovf_check(void);
 #define scia_rx_is_ovf()        (SciaRegs.SCIFFRX.bit.RXFFOVF == 1)
 #define scia_rx_ovf_clear()     {SciaRegs.SCIFFRX.bit.RXFFOVRCLR = 1; SciaRegs.SCIFFRX.bit.RXFIFORESET = 1;}
 
-#if USE_SENDSTRING
+/* *****************************************************************************
+ * Variables External Usage
+ **************************************************************************** */
+
+/* *****************************************************************************
+ * Function Prototypes
+ **************************************************************************** */
+void scia_init(void);
+void scia_flush(void);
+void scia_ovf_check(void);
+
+/* *****************************************************************************
+ * Functions
+ **************************************************************************** */
+#if CONFIG_USE_DEBUG_SEND
 void scia_SendString(char* pData);
 #else
 #define scia_SendString(x)
 #endif
 
-#if USE_TXEN
-static inline
-void scia_CheckRTSDisable(void)
+#if CONFIG_USE_TXEN
+static inline void scia_CheckRTSDisable(void)
 {
     if(scia_is_tx_complete())
     {
-        gpio_pin_write(DEVICE_GPIO_PIN_SCITXEN, 0);
+        gpio_pin_write(CONFIG_SCITXEN_PIN, 0);
     }
 }
 #endif
 
-static inline
-void scia_tx_data(char data)
+static inline void scia_tx_data(char data)
 {
-    #if USE_TXEN
-    gpio_pin_write(DEVICE_GPIO_PIN_SCITXEN, 1);
+    #if CONFIG_USE_TXEN
+    gpio_pin_write(CONFIG_SCITXEN_PIN, 1);
     #endif
     SciaRegs.SCITXBUF = (data & 0xFF);
 }
 
-static inline
-void scia_SendChar(char *pData)
+static inline void scia_SendChar(char *pData)
 {
     uint16_t* pu16Data = (uint16_t*)pData;
     while (scia_is_tx_possible() == false)
     {
 
     }
-    #if USE_TXEN
-    gpio_pin_write(DEVICE_GPIO_PIN_SCITXEN, 1);
+    #if CONFIG_USE_TXEN
+    gpio_pin_write(CONFIG_SCITXEN_PIN, 1);
     #endif
     SciaRegs.SCITXBUF=(*pu16Data & 0xFF);
 }
 
-void
-scia_fifo_init(void);
 
 static inline uint16_t scia_ReadChar(char* pData)
 {
@@ -99,26 +111,13 @@ static inline uint16_t scia_ReadChar(char* pData)
 
     if (scia_rx_is_ovf())
     {
-        //fail_scia_ovf++;
-        //while(scia_is_rx_available())
-        //{
-        //    *pData = (scia_rx_data() & 0xFF);
-        //}
         scia_rx_ovf_clear();
 
-
-        //scia_fifo_init();
         SciaRegs.SCIFFTX.all=0x0000;
         SciaRegs.SCIFFTX.all=0xE040;
         SciaRegs.SCIFFRX.all=0x6044;
-        //SciaRegs.SCIFFRX.all=0x4044; //with overflow clear
         SciaRegs.SCIFFCT.all=0x0;
 
-
-        //while(scia_is_rx_available())
-        //{
-        //    *pData = (scia_rx_data() & 0xFF);
-        //}
         u16Return = 2;
     }
     else
@@ -132,10 +131,14 @@ static inline uint16_t scia_ReadChar(char* pData)
 
 
 
-#endif /* SCIA_H_ */
-//
-// End of File
-//
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
+
+
+
+
+
 
 
 
