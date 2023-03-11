@@ -3,6 +3,7 @@
 	<name>modbus_test</name>
 	<comment></comment>
 	<projects>
+		<project>modbus_lib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -229,6 +230,16 @@
 			<name>F2806x_XIntrupt.h</name>
 			<type>1</type>
 			<locationURI>COM_TI_C2000WARE_SOFTWARE_PACKAGE_INSTALL_DIR/device_support/f2806x/headers/include/F2806x_XIntrupt.h</locationURI>
+		</link>
+		<link>
+			<name>modbus.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/modbus_lib/modbus.h</locationURI>
+		</link>
+		<link>
+			<name>modbus_lib.lib</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/04_Output_Files/Release/modbus_lib.lib</locationURI>
 		</link>
 		<link>
 			<name>rts2800_fpu32_fast_supplement.lib</name>

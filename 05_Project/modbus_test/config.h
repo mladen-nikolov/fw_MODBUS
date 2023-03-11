@@ -22,10 +22,10 @@ extern "C"
 /* *****************************************************************************
  * Configuration Definitions
  **************************************************************************** */
-#define CONFIG_USE_TXEN                 1
-#define CONFIG_SCITXEN_PIN              15
+//#define CONFIG_USE_TXEN                 1
+//#define CONFIG_SCITXEN_PIN              15
 
-#define CONFIG_BAUD                     460800
+//#define CONFIG_BAUD                     460800
 
 #define CONFIG_USE_DEBUG_SEND           0           /* send via scia with debug purpose */
 

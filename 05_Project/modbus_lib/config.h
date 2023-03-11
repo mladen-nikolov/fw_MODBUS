@@ -1,5 +1,5 @@
 /* *****************************************************************************
- * File:   device.h
+ * File:   config.h
  * Author: XX
  *
  * Created on 2023 03 10
@@ -18,19 +18,21 @@ extern "C"
 /* *****************************************************************************
  * Header Includes
  **************************************************************************** */
-#include "F2806x_Cla_typedefs.h"// F2806x CLA Type definitions
-#include "F2806x_Device.h"      // F2806x Headerfile Include File
-#include "F2806x_Examples.h"    // F2806x Examples Include File
 
 /* *****************************************************************************
  * Configuration Definitions
  **************************************************************************** */
+#define CONFIG_USE_TXEN                 1
+#define CONFIG_SCITXEN_PIN              15
+
+#define CONFIG_BAUD                     460800
+
+//#define CONFIG_USE_DEBUG_SEND           0           /* send via scia with debug purpose */
+
 
 /* *****************************************************************************
  * Constants and Macros Definitions
  **************************************************************************** */
-#define SECTION_RAM_FUNC    "ramfuncs"
-//#define DEVICE_SYSCLK_FREQ  90000000    /* 90 MHz */
 
 /* *****************************************************************************
  * Enumeration Definitions
@@ -52,7 +54,10 @@ extern "C"
  * Function Prototypes
  **************************************************************************** */
 
+
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
+
 

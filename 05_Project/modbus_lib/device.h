@@ -29,8 +29,8 @@ extern "C"
 /* *****************************************************************************
  * Constants and Macros Definitions
  **************************************************************************** */
-#define SECTION_RAM_FUNC    "ramfuncs"
-//#define DEVICE_SYSCLK_FREQ  90000000    /* 90 MHz */
+//#define SECTION_RAM_FUNC    "ramfuncs"
+#define DEVICE_SYSCLK_FREQ  90000000    /* 90 MHz */
 
 /* *****************************************************************************
  * Enumeration Definitions
