@@ -46,10 +46,12 @@
 /* *****************************************************************************
  * Variables Definitions
  **************************************************************************** */
+#ifdef _FLASH
 extern Uint16 RamfuncsLoadStart;
 extern Uint16 RamfuncsLoadEnd;
 extern Uint16 RamfuncsRunStart;
 extern Uint16 RamfuncsLoadSize;
+#endif
 
 uint32_t holding_registers_data[64];
 
@@ -103,10 +105,12 @@ void main(void)
     // This will populate the entire table, even if the interrupt not used
     InitPieVectTable();
 
+#ifdef _FLASH
     // Copy time critical code and Flash setup code to RAM
     // This includes the following ISR functions: InitFlash();
     // For RamfuncsLoadStart, RamfuncsLoadSize, RamfuncsRunStart see .cmd file.
     memcpy(&RamfuncsRunStart, &RamfuncsLoadStart, (Uint32)&RamfuncsLoadSize);
+#endif
 
     // Call Flash Initialization to setup flash waitstates
     // This function must reside in RAM
