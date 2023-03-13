@@ -31,6 +31,11 @@
 			<locationURI>COM_TI_C2000WARE_SOFTWARE_PACKAGE_INSTALL_DIR/device_support/f2806x/common/include/F2806x_Cla_typedefs.h</locationURI>
 		</link>
 		<link>
+			<name>F2806x_CpuTimers.h</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/ti/c2000/C2000Ware_4_02_00_00/device_support/f2806x/headers/include/F2806x_CpuTimers.h</locationURI>
+		</link>
+		<link>
 			<name>F2806x_Device.h</name>
 			<type>1</type>
 			<locationURI>COM_TI_C2000WARE_SOFTWARE_PACKAGE_INSTALL_DIR/device_support/f2806x/headers/include/F2806x_Device.h</locationURI>
