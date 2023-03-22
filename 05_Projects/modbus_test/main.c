@@ -48,7 +48,7 @@
  **************************************************************************** */
 #ifdef _FLASH
 extern Uint16 RamfuncsLoadStart;
-extern Uint16 RamfuncsLoadEnd;
+//extern Uint16 RamfuncsLoadEnd;
 extern Uint16 RamfuncsRunStart;
 extern Uint16 RamfuncsLoadSize;
 #endif

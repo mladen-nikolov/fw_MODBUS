@@ -23,9 +23,9 @@ extern "C"
 /* *****************************************************************************
  * Configuration Definitions
  **************************************************************************** */
-#define MODBUS_TIMEOUT_BYTE_MS                 2,5           /* max timeout between bytes to reset the message in receive communication loop also on timeout triggers evaluation of received till now message */
-#define MODBUS_TIMEOUT_MESSAGE_MS              2,5           /* timeout from the last byte received before say - detected end of the message */
-#define MODBUS_TIMEOUT_MESS_MESS_MS            1,5           /* timeout from the end of previous message to the start of the next message to detect start of message */
+#define MODBUS_TIMEOUT_BYTE_MS                 2.5           /* max timeout between bytes to reset the message in receive communication loop also on timeout triggers evaluation of received till now message */
+#define MODBUS_TIMEOUT_MESSAGE_MS              2.5           /* timeout from the last byte received before say - detected end of the message */
+#define MODBUS_TIMEOUT_MESS_MESS_MS            1.5           /* timeout from the end of previous message to the start of the next message to detect start of message */
 
 
 /* *****************************************************************************
