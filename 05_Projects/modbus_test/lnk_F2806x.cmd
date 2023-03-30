@@ -128,16 +128,16 @@ PAGE 0 :   /* Program Memory */
    FLASH_APP   : origin = 0x3E8000, length = 0x00BF80     /* on-chip FLASH */
    BOOT_APP	   : origin = 0x3F4000, length = 0x003F80     /* on-chip FLASH */
 
-   CSM_PWL_P0  : origin = 0x3F3FF8, length = 0x000008     /* Part of FLASHA.  CSM password locations in FLASHA */
-   CSM_RSVD    : origin = 0x3F3F80, length = 0x000076     /* Part of FLASHA.  Program with all 0x0000 when CSM is in use. */
+   CSM_PWL_P0  : origin = 0x3F3FF8, length = 0x000008     /* (Defined in Bootloader only for not to generate warnings/errors. Not used) Part of FLASHA.  CSM password locations in FLASHA */
+   CSM_RSVD    : origin = 0x3F3F80, length = 0x000076     /* (Defined in Bootloader only for not to generate warnings/errors. Not used) Part of FLASHA.  Program with all 0x0000 when CSM is in use. */
 #elif defined(_BOOTLOADER_8kW)
    //for Bootloader Usage
    BEGIN       : origin = 0x3F5FF6, length = 0x000002     /* Part of FLASHB(28062).  Used from bootloader . */
    FLASH_APP   : origin = 0x3E8000, length = 0x00DF80     /* on-chip FLASH */
    BOOT_APP	   : origin = 0x3F6000, length = 0x001F80     /* on-chip FLASH */
 
-   CSM_PWL_P0  : origin = 0x3F5FF8, length = 0x000008     /* Part of FLASHA.  CSM password locations in FLASHA */
-   CSM_RSVD    : origin = 0x3F5F80, length = 0x000076     /* Part of FLASHA.  Program with all 0x0000 when CSM is in use. */
+   CSM_PWL_P0  : origin = 0x3F5FF8, length = 0x000008     /* (Defined in Bootloader only for not to generate warnings/errors. Not used) Part of FLASHA.  CSM password locations in FLASHA */
+   CSM_RSVD    : origin = 0x3F5F80, length = 0x000076     /* (Defined in Bootloader only for not to generate warnings/errors. Not used) Part of FLASHA.  Program with all 0x0000 when CSM is in use. */
 #else
    //for Standalone Usage
    BEGIN       : origin = 0x3F7FF6, length = 0x000002     /* Part of FLASHA. Used for boot from Flash in standalone mode */
